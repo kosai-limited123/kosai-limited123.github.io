@@ -1,0 +1,26 @@
+ul{
+	list-style-type: decimal;}
+ul:last-child{
+	list-style-type: none;}
+.iol{
+	width: 300px;
+	height: auto;
+	margin-left: 50px;
+	display: block;}
+table{
+	margin-top: 10px;}
+td, th{
+	padding-left: 10px;
+	text-align: center;}
+.tb2, #ert{
+	display: none;}
+@media(min-width: 768px) and (max-width: 991px){
+	.tb1{
+		display: none;}
+	.tb2{
+		display: block;}}
+@media(max-width: 767px){
+	table{
+		display: none;}
+	#ert{
+		display: block;}}
