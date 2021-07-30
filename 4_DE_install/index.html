@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Demo</title>
+		<link rel="shortcut icon" type="image/x-icon" href="../common/assets/logo.png">
+		<link rel="stylesheet" href="../common/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../common/awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../common/css/navbar-fixed.css">
+		<link rel="stylesheet" href="../common/css/scroll.css">
+		<link rel="stylesheet" href="../common/css/common.css">
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body class="text-justify">
+		<div id="idk0" class="second-body text-light">
+
+			<!--NAVIGATION BAR-->
+
+			<nav class="custm-nav navbar navbar-dark navbar-expand-md fixed-top">
+				<a class="navbar-brand">
+					<img height=40px; src="../common/assets/logo.png" alt="">
+					<span class="ml-2">Koshai Limited</span>
+				</a>
+				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#hdnv">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="hdnv">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item ml-auto"><a class="nav-link" href="#">Home</a></li>
+						<li class="nav-item ml-auto"><a class="nav-link" href="../archive/index.html">Archive</a></li>
+						<li class="nav-item ml-auto"><a class="nav-link" href="../members/index.html">Members</a></li>
+						<li class="nav-item ml-auto"><a class="nav-link" href="#">Projects</a></li>
+					</ul>
+				</div>
+			</nav>
+
+			<!--BREADCRUMB-->
+			<div class="inner">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="../archive/index.html">Archive</a></li>
+					<li class="breadcrumb-item">desktop environment installation in Arch Linux</li>
+				</ol>
+			</div>
+
+			<span><a class="btn pos kol1 btn-outline-secondary" href="#idk0"><i class="fa fa-2x fa-arrow-circle-up"></i></a></span>
+
+			<div class="headbar">Desktop Environment installation in Arch Linux</div>
+
+			In the last session, we install a very bare minimum Arch Linux in our machine. Now we will install a desktop environment
+			(DE) in our desktop. We also need to create a non-root user so that he doesn't do any stupid thing accidentally and breaks
+			his installation.
+			<br><br>
+			There are many desktop environments out there in the Linux world. Some of the popular desktop environments are GNOME,
+			Cinnamon, KDE, Xfce, Mate, Deepin etc. Plus there are a ton of window managers also. Here we will focus on the
+			<span class="text-info">Cinnamon</span> desktop environment because it is very user friendly and has almost the same
+			layout like windows 7 and 10.
+
+			<!--SUMMARY-->
+			<section id="idk_0" class="font-sm">
+				<div class="headbar2">summary</div>
+				<ul style="list-style-type:disc;" class="pagee">
+					<li><a href="#idk1">creating a new user</a></li>
+					<li><a href="#idk2">setting user password</a></li>
+					<li><a href="#idk3">adding the user to various groups</a></li>
+					<li><a href="#idk4">editing visudo file</a></li>
+					<li><a href="#idk5">installing video drivers</a></li>
+					<li><a href="#idk6">installing display server</a></li>
+					<li><a href="#idk7">installing display manager</a></li>
+					<li><a href="#idk8">installing desktop environment</a></li>
+					<li><a href="#idk9">installing some additional packages</a></li>
+					<li><a href="#idk10">final words</a></li>
+				</ul>
+			</section>
+			
+			<section id="idk1">
+				<div class="headbar2">creating a new user</div>
+			
+				It is really a bad idea to constantly work from the root account. Because something can easily get messed up and nightmare can fall. So,
+				after the login, create a user account. Here I am using my username as <span class="text-info">archuser</span>.
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp1"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp1">
+					useradd -m archuser
+				</div>
+			</section>
+
+			<section id="idk2">
+				<div class="headbar2">setting user password</div>
+			
+				Now create a user password. If you are relatively new in Linux world, it is recommended to use the same password as the root user.
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp2"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp2">
+					passwd archuser
+				</div>
+
+				Use the name you created in the previous step and type your password twice. Be attentive, as <span class="text-danger font-italic">
+				you will see nothing while typing</span>.
+				
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../4_DE_install/assets/1_useradd.png" alt="adding user" width="700">
+			</section>
+
+			<section id="idk3">
+				<div class="headbar2">adding the user to various groups</div>
+			
+				Now its time to add the newly created user to many groups. This includes audio, video, optical etc. Otherwise you will miss some
+				functionalities when we install a graphical user interface.
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp3"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp3">
+					usermod -aG wheel,audio,video,optical,storage archuser
+				</div>
+			</section>
+
+			<section id="idk4">
+				<div class="headbar2">editing visudo file</div>
+			
+				Next we need to edit the <span class="text-info font-italic">visudo</span> file so that <span class="text-info">sudo</span> can grant the
+				new user root privileges.
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp4"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp4">
+					EDITOR=nano visudo
+				</div>
+
+				Activate the search option by pressing the shortcut <span class="kbd">Ctrl</span> + <span class="kbd">W</span> and type
+				<span class="text-info"># %wheel</span>. Press <span class="kbd">Enter</span> .
+				<br><br>
+				You should jump to the line <span class="text-info"># %wheel ALL=(ALL) ALL</span>. Uncomment it by removing the <i>#</i> sign. Press
+				<span class="kbd">Ctrl</span> + <span class="kbd">O</span> Enter to save and <span class="kbd">Ctrl</span> + <span class="kbd">X</span> .
+				<span class="kbd">Enter</span> to exit the editor.
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../4_DE_install/assets/2_visudo.png" alt="visudo file editing" width="700">
+				
+				Now reboot the system.
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp5"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp5">
+					reboot
+				</div>
+
+				And log in with the regular user credentials which you have just created.
+				
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../4_DE_install/assets/3_user.png" alt="non-root user login" width="700">
+			</section>
+
+			<section id="idk5">
+				<div class="headbar2">installing video drivers</div>
+			
+				Video drivers are needed for good resolution and smooth performance. They come into play if you install Arch Linux in virtualbox. But
+				first of all, update your system.
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp6"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp6">
+					sudo pacman -Syu
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../4_DE_install/assets/4_update.png" alt="system update" width="700">
+
+				Now install the necessary video driver.
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp7"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp7">
+					sudo pacman -S xf86-video-qxl
+				</div>
+
+				Since I am doing it in a virtual machine, I chose this package. If you are installing in a hardware with Intel CPU, you need to install
+				the <span class="text-info">xf86-video-intel</span> package. In case of AMD CPU, install the <span class="text-info">xf86-video-amdgpu</span> package.
+				<br><br>
+				<div class="text-warning font-italic">
+					<u>CAUTION</u>: If you are installing in the computer with intel processor, you probably don't need to install video driver. Because
+					<span class="text-danger">it can cause the system to freeze</span>.
+				</div><br>
+
+				If you have nvidia graphics drivers, then install these packages:
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp8"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp8">
+					sudo pacman -S nvidia nvidia-utils
+				</div>
+			</section>
+
+			<section id="idk6">
+				<div class="headbar2">installing display server</div>
+			
+				Now we need to install the display server. Most two popular display managers are <span class="text-info">xorg</span> and
+				<span class="text-info">wayland</span>. Here we will install xorg. Type:
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp9"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp9">
+					sudo pacman -S xorg
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../4_DE_install/assets/5_xorg.png" alt="installing xorg" width="700">
+			</section>
+
+			<section id="idk7">
+				<div class="headbar2">installing display manager</div>
+			
+				There are many display managers out there. Popular display managers are gdm, lightdm, sddm etc. Here we will install lightdm display manager.
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp10"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp10">
+					sudo pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+				</div>
+				
+				<b>package description in short:</b>
+				<br><br>
+				<table class="text-center table table-sm table-dark table-striped table-bordered">
+					<tr><th>package</th><th>description</th></tr>
+					<tr><td>lightdm</td><td>display manager</td></tr>
+					<tr><td>lightdm-gtk-greeter</td><td>login manager</td></tr>
+					<tr><td>lightdm-gtk-greeter-settings</td><td>customization package for lightdm login manager</td></tr>
+				</table>
+
+				Activate the services:
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp1_3"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp1_3">
+					sudo systemctl enable lightdm.service
+				</div>
+			</section>
+
+			<section id="idk8">
+				<div class="headbar2">installing desktop environment</div>
+			
+				To install the desktop environment, type:
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp11"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp11">
+					sudo pacman -S cinnamon gnome-keyring gnome-terminal
+				</div>
+				<b>package description in short:</b>
+				<br><br>
+				<table class="text-center table table-sm table-dark table-striped table-bordered">
+					<tr><th>package</th><th>description</th></tr>
+					<tr><td>cinnamon</td><td>desktop environment(DE)</td></tr>
+					<tr><td>gnome-keyring</td><td>package to store wifi passwords</td></tr>
+					<tr><td>gnome-terminal</td><td>preferred terminal emulator</td></tr>
+				</table>
+			</section>
+
+			<section id="idk9">
+				<div class="headbar2">installing some additional packages</div>
+			
+				If you need some extra features to work, you need these packages to be installed:
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp12"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp12">
+					sudo pacman -S system-config-printer blueberry cups
+				</div>
+				<b>package description in short:</b>
+				<br><br>
+				<table class="text-center table table-sm table-dark table-striped table-bordered">
+					<tr><th>package</th><th>description</th></tr>
+					<tr><td>system-config-printer</td><td>package to have printer options in the settings</td></tr>
+					<tr><td>blueberry</td><td>package to install bluetooth in the system</td></tr>
+					<tr><td>cups</td><td>additional package for the printers to work</td></tr>
+				</table>
+
+				Now we need to activate the services. Type:
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp13"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp13">
+					sudo systemctl enable org.cups.cupsd.service<br>
+					sudo systemctl enable bluetooth
+				</div>
+
+				Now reboot the system.
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp14"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp14">
+					reboot
+				</div>
+			</section>
+
+			<section id="idk10">
+				<div class="headbar2">final words</div>
+			
+				If everything is done correctly, you will be presented will lightdm login manager. Give your credentials and press
+				<span class="kbd">Log In</span> .
+
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../4_DE_install/assets/6_lightdm.png" alt="login manager" width="700">
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../4_DE_install/assets/7_desktop.png" alt="desktop environment" width="700">
+
+				If you followed along and did everything properly than congrats! You successfully installed the cinnamon desktop
+				environment. Enjoy your new desktop.
+
+			</section>
+		</div>
+		<footer class="text-center text-light py-5">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<h2>Koshai Limited</h2>
+							<p>Copyright &copy; 2021</p>
+							<span>Designed By: 
+								<a href="#" class="ml-2 text-warning" target="_blank">Rootminusone</a>
+							</span>
+							<div class="my-2">Contact us:</div>
+							<a href="#" target="_blank" class="text-light"><i class="fa fa-facebook-official fa-2x"></i></a>
+							<a href="#" target="_blank" class="text-light ml-2"><i class="fa fa-youtube-play fa-2x"></i></a>
+							<a href="#" target="_blank" class="text-light ml-2"><i class="fa fa-whatsapp fa-2x"></i></a>
+							<a href="#" target="_blank" class="text-light ml-2"><i class="fa fa-twitter fa-2x"></i></a>
+						</div>
+					</div>
+				</div>
+			</footer>
+		
+		<script src="../common/js/jquery.js"></script>
+		<script src="../common/js/popper.min.js"></script>
+		<script src="../common/js/bootstrap.min.js"></script>
+		<script src="../common/js/navbar-fixed.js"></script>
+		<script src="../common/js/clipboard.min.js"></script>
+		<script src="../common/js/common.js"></script>
+	</body>
+</html>

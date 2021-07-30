@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Demo</title>
+		<link rel="shortcut icon" type="image/x-icon" href="../common/assets/logo.png">
+		<link rel="stylesheet" href="../common/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../common/awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../common/css/navbar-fixed.css">
+		<link rel="stylesheet" href="../common/css/scroll.css">
+		<link rel="stylesheet" href="../common/css/common.css">
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body class="text-justify">
+		<div id="idk0" class="second-body text-light">
+
+			<!--NAVIGATION BAR-->
+
+			<nav class="custm-nav navbar navbar-dark navbar-expand-md fixed-top">
+				<a class="navbar-brand">
+					<img height=40px; src="../common/assets/logo.png" alt="">
+					<span class="ml-2">Koshai Limited</span>
+				</a>
+				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#hdnv">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="hdnv">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item ml-auto"><a class="nav-link" href="#">Home</a></li>
+						<li class="nav-item ml-auto"><a class="nav-link" href="../archive/index.html">Archive</a></li>
+						<li class="nav-item ml-auto"><a class="nav-link" href="../members/index.html">Members</a></li>
+						<li class="nav-item ml-auto"><a class="nav-link" href="#">Projects</a></li>
+					</ul>
+				</div>
+			</nav>
+
+			<!--BREADCRUMB-->
+			<div class="inner">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="../archive/index.html">Archive</a></li>
+					<li class="breadcrumb-item">Arch Linux Installation</li>
+				</ol>
+			</div>
+
+			<span><a class="btn pos kol1 btn-outline-secondary" href="#idk0"><i class="fa fa-2x fa-arrow-circle-up"></i></a></span>
+
+			<div class="headbar">Arch Linux installation</div>
+
+			There are many Linux distributions out there. One of them is Arch Linux. Arch Linux is a minimal distribution and it helps
+			the users explore Linux. It pulls the softwares directly from the sources with minimal patch possible. Although Arch Linux
+			follow the KISS (Keep It Simple, Stupid) philosophy. It's installation process is not that user friendly. The whole installation
+			process is done in the command line interface. Today we will go through the installation process and keep it as simple as possible.
+
+			<!--SUMMARY-->
+			<section id="idk_0" class="font-sm">
+				<div class="headbar2">summary</div>
+				<ul style="list-style-type:disc;" class="pagee">
+					<li><a href="#idk1">legacy of uefi?</a></li>
+					<li><a href="#idk2">downloading the iso</a></li>
+					<li><a href="#idk3">network connection</a></li>
+					<li><a href="#idk4">time synchronization</a></li>
+					<li><a href="#idk5">creating partitions</a></li>
+					<li><a href="#idk6">mounting partitions</a></li>
+					<li><a href="#idk7">installing the system</a></li>
+					<li><a href="#idk8">generating fstab file</a></li>
+					<li><a href="#idk9">changing root to the installed system</a></li>
+					<li><a href="#idk10">setting the time zone</a></li>
+					<li><a href="#idk11">setting local time</a></li>
+					<li><a href="#idk12">setting locale</a></li>
+					<li><a href="#idk13">setting hostname</a></li>
+					<li><a href="#idk14">enabling network</a></li>
+					<li><a href="#idk15">setting root passwd</a></li>
+					<li><a href="#idk16">grub installation</a></li>
+					<li><a href="#idk17">reboot the system</a></li>
+				</ul>
+			</section>
+			
+			<section id="idk1">
+				<div class="headbar2">legacy or uefi?</div>
+
+				I personally prefer the Arch Linux installation in the legacy mode because it is more conservative, simpler, and reliable.
+				However, the UEFI mode is more up-to-date and some modern hardware supports only the UEFI installation.
+				<br><br>
+				This Arch Linux installation guide will use the UEFI mode, but the legacy mode will also be covered by pointing out the
+				differences where it is needed. So, regardless of what mode you choose, your Arch Linux base installation will most likely
+				get covered.
+
+			</section>
+
+			<section id="idk2">
+				<div class="headbar2">downloading the iso</div>
+
+				First, download the Arch Linux installation ISO from the Arch Linux <span class="pagee"><a href="https://archlinux.org/download/" target="_blank">
+				Arch Linux</a></span> website. You can download the torrent file or use the direct link. Just find your country and click on the link.
+				Among the variety of files, choose the ISO <span class="text-info font-italic">archlinux-xxxx.xx.xx-x86_64.iso</span> and signature 
+				<span class="text-info font-italic">archlinux-xxxx.xx.xx-x86_64.iso.sig</span> files.
+				<br>
+				When the ISO is downloaded, you need to check its signature to make sure it has not been compromised:
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp1"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp1">
+					gpg --keyserver-options auto-key-retrieve --verify /path/to/archlinux.iso.sig
+				</div>
+
+				If you see <span class="font-italic">"Good signature from …"</span>, this means you are good to go.
+				<br><br>
+				Before moving further, I would suggest to try the whole installation process in <span class="pagee"><a href="https://www.virtualbox.org">
+				virtualbox</a></span>. Since it is a command line installation, typo can happen and you will end with a broken installation. Even worse,
+				<span class="text-danger font-italic">you may lose you data</span>. So practice first and once you get your feet wet, you may proceed
+				to install it in your daily drive.
+
+			</section>
+
+			<section id="idk3">
+				<div class="headbar2">network connection</div>
+			
+				First of all, check the internet connection. A wired connection is recommended. To check if your internet works, you need to ping to any
+				server, for example, the GNU website:
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp2"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp2">
+					ping -c 5 gnu.org
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../3_arch_linux_install/assets/1_ping.png" alt="ping screen" width="700">
+				
+				If you are not sure what interfaces are available, use
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp3"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp3">
+					ip addr
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../3_arch_linux_install/assets/2_ip.png" alt="ip address" width="700">
+			</section>
+
+			<section id="idk4">
+				<div class="headbar2">time synchronization</div>
+			
+				Now we need to set up time system time. So that the software clock and the installation clock are synchronized properly.
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp4"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp4">
+					timedatectl set-ntp true
+				</div>
+				
+				Check the time:
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp5"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp5">
+					timedatectl status
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../3_arch_linux_install/assets/3_timedatectl.png" alt="timedatectl" width="700">
+			</section>
+
+			<section id="idk5">
+				<div class="headbar2">creating partitions</div>
+
+				The next step is system partition of the hard drive. It is the most crucial part of the whole installation process. Any miss step
+				can ruin your hard drive. So you need to be careful here.
+				<br><br>
+				There are many command line installer out there. Here we will use <span class="text-info">cfdisk</span> because it is a little user
+				friendly. First of all, check list all the available disks and partitions.
+				 
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp6"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp6">
+					lsblk
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../3_arch_linux_install/assets/4_lsblk.png" alt="list partitions" width="700">
+
+				Now point out the partition where you want to install the system. Run this command to create a new partition table:
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp7"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp7">
+					cfdisk /dev/sda
+				</div>
+				<div class="text-danger font-italic">
+					Creating a new partition table will erase everything from a drive. So back up all your data.
+				</div>
+				<br>
+				In the label type window, select <i>gpt</i>.
+				
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../3_arch_linux_install/assets/5_cfdisk.png" alt="disk utility" width="700">
+				<hr color="#FFFFFF">
+
+				<b>legacy mode: </b>In case of legacy installation, choose the <i>dos</i> partition type and do not create the
+				<i>UEFI</i> partition.
+
+				<hr color="#FFFFFF">
+
+				Use the arrow keys and <span class="kbd">Enter</span> to create 3 partitions:
+				<br><br>
+				<ul>
+					<li><span class="font-italic text-info">/dev/sda1</span> # choose 512MB of space (UEFI)</li>
+					<li><span class="font-italic text-info">/dev/sda2</span> # choose at least 10 GB of space (root)</li>
+					<li><span class="font-italic text-info">/dev/sda3</span> # choose all the left space (home)</li>
+				</ul>
+
+				Write the table to your hard drive and quit.
+
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../3_arch_linux_install/assets/6_partition.png" alt="partition table" width="700">
+
+				Now list the partitions again.
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp8"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp8">
+					lsblk
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../3_arch_linux_install/assets/7_lsblk.png" alt="list partitions" width="700">
+
+				Once the partitions are created, it's time to format them.
+				<br><br>
+				The first partition is the UEFI partition. It needs to be formatted with a FAT file system:
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp9"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp9">
+					mkfs.fat -F32 /dev/sda1
+				</div>
+				<hr color="#FFFFFF">
+
+				<b>legacy mode: </b>In case of legacy installation, skip the step. You shouldn't have this partition.
+
+				<hr color="#FFFFFF">
+
+				The other two partitions need to be formatted with a EXT4 file system (Other Linux systems will also work but EXT4
+				is always recommended):
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp10"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp10">
+					mkfs.ext4 /dev/sda2<br>
+					mkfs.ext4 /dev/sda3
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../3_arch_linux_install/assets/8_ext4.png" alt="partition formatting" width="700">
+			</section>
+
+			<section id="idk6">
+				<div class="headbar2">mounting partitions</div>
+			
+				Once the partitions are created. It's time to mount them. First, mount the root partition.
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp11"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp11">
+					mount /dev/sda2 /mnt
+				</div>
+				
+				Create a folder to mount the home partition and mount it:
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp12"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp12">
+					mkdir /mnt/home<br>
+					mount /dev/sda3 /mnt/home
+				</div>
+
+				List the partitons to check mounting points:
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp13"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp13">
+					lsblk
+				</div>
+
+				Note, the <span class="text-info font-italic">root</span> mounting point is the folder where the system will
+				be installed. The <span class="text-info font-italic">home</span> mounting point partition is where you will
+				put all of your personal data.
+
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../3_arch_linux_install/assets/9_mount.png" alt="mounting drives" width="700">
+			</section>
+
+			<section id="idk7">
+				<div class="headbar2">installing the system</div>
+			
+				Now it's time to install the system. Use the <span class="text-info font-italic">pacstrap</span> command to install
+				the base system:
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp14"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp14">
+					pacstrap -i /mnt base base-devel linux-lts linux-lts-headers linux-firmware sudo nano
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../3_arch_linux_install/assets/10_install.png" alt="pre install" width="700">
+				
+				When the system requests to choose the components to install, select all and yes. Wait some time until it completes.
+				<br><br>
+				<b>package description in short:</b>
+				<br><br>
+				<table class="text-center table table-sm table-dark table-striped table-bordered">
+					<tr><th>package</th><th>description</th></tr>
+					<tr><td>base</td><td>meta package of essential programs for basic installation</td></tr>
+					<tr><td>base-devel</td><td>additional packages for base installation</td></tr>
+					<tr><td>linux-lts</td><td>Linux kernel (Long Time Support version)</td></tr>
+					<tr><td>linux-lts-headers</td><td>header files for the kernel</td></tr>
+					<tr><td>linux-firmware</td><td>additional modules for the kernel</td></tr>
+					<tr><td>sudo</td><td>package for granting user privileges</td></tr>
+					<tr><td>nano</td><td>command line based text editor</td></tr>
+				</table>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../3_arch_linux_install/assets/11_install.png" alt="middle in installation" width="700">
+			</section>
+
+			<section id="idk8">
+				<div class="headbar2">generating fstab file</div>
+			
+				Now it's time to generate the fstab file.
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp15"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp15">
+					genfstab -U -p /mnt >> /mnt/etc/fstab
+				</div>
+			</section>
+
+			<section id="idk9">
+				<div class="headbar2">changing root to the installed system</div>
+			
+				Honestly speaking, the basic Arch Linux installation has been completed. But it needs some more tweaks to be bootable and usable. That's
+				why we need to migrate from usb installer to the installed root partition. We can do that by typing this command:
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp16"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp16">
+					arch-chroot /mnt /bin/bash
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../3_arch_linux_install/assets/12_chroot.png" alt="chroot" width="700">
+
+				Now you accessed the system as a root user. A bit later, you will also add the regular user.
+
+			</section>
+
+			<section id="idk10">
+				<div class="headbar2">setting the time zone</div>
+			
+				To set the time zone, type:
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp17"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp17">
+					ln -sf /usr/share/zoneinfo/
+				</div>
+				
+				and then press the <span class="kbd">Tab</span> key to see the available regions. In my case, I need to choose Asia. Again, you
+				can press the <span class="kbd">Tab</span> key, and you will see all the available cities. I will use Dhaka.
+				<br><br>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../3_arch_linux_install/assets/13_region.png" alt="region" width="700">
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../3_arch_linux_install/assets/14_city.png" alt="cities" width="700">
+
+				Save this link to <span class="text-info font-italic">/etc/localtime</span>. The final command will look as follows:
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp18"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp18">
+					ln -sf /usr/share/zoneinfo/Asia/Dhaka /etc/localtime
+				</div>
+
+				Instead of Asia and Dhaka, select your own region and city for time zone.
+
+			</section>
+
+			<section id="idk11">
+				<div class="headbar2">setting local time</div>
+			
+				To set the time for the system, run this command:
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp19"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp19">
+					hwclock --systohc
+				</div>
+				
+				Now, check the time:
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp20"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp20">
+					date
+				</div>
+
+				If the time is incorrect, go back and make sure you have set the timezone correctly.
+
+			</section>
+
+			<section id="idk12">
+				<div class="headbar2">setting locale</div>
+			
+				To set the localization, edit the <span class="text-info font-italic">/etc/locale.gen</span>
+				file. Type:
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp21"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp21">
+					nano /etc/locale.gen
+				</div>
+				
+				Find the language you are going to use. In my case, I am going to install American English. Activate the search option by
+				pressing the shortcut <span class="kbd">Ctrl</span> + <span class="kbd">W</span> and type <span class="text-info">#en_US</span>.
+				Press <span class="kbd">Enter</span> .
+				<br><br>
+				You should jump to the line <span class="text-info">#en_US.UTF-8 UTF-8</span>. Uncomment it by removing the <i>#</i> sign. Press
+				<span class="kbd">Ctrl</span> + <span class="kbd">O</span> Enter to save and <span class="kbd">Ctrl</span> + <span class="kbd">X</span> .
+				<span class="kbd">Enter</span> to exit the editor.
+				<br><br>
+				Next, you have to generate the locale. Run:
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp22"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp22">
+					locale-gen
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../3_arch_linux_install/assets/15_locale.png" alt="locale" width="700">
+
+				And create the <span class="text-info font-italic">locale.conf</span> with corresponding language settings:
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp23"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp23">
+					echo "LANG=en_US.UTF-8" > /etc/locale.conf
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../3_arch_linux_install/assets/16_locale.png" alt="locale file in nano" width="700">
+			</section>
+
+			<section id="idk13">
+				<div class="headbar2">setting host-name</div>
+			
+				A hostname is the computer’s name. Let’s name it <span class="text-info">archy</span>. Use the following command:
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp24"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp24">
+					echo archy > /etc/hostname
+				</div>
+				
+				You also need to edit the <span class="text-info font-italic">/etc/hosts</span> file. Type:
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp25"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp25">
+					nano /etc/hosts
+				</div>
+
+				Then press <span class="kbd">Enter</span> .
+				<br>
+				add this line at the end of the file:
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp26"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp26">
+					127.0.0.1&nbsp;&nbsp;&nbsp;localhost<br>
+					::1&nbsp;&nbsp;&nbsp;localhost<br>
+					127.0.1.1&nbsp;&nbsp;&nbsp;archy.localdomain&nbsp;&nbsp;&nbsp;archy
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../3_arch_linux_install/assets/17_hosts.png" alt="hosts file" width="700">
+
+				Press <span class="kbd">Ctrl</span> + <span class="kbd">O</span> Enter to save and <span class="kbd">Ctrl</span> + 
+				<span class="kbd">X</span> . <span class="kbd">Enter</span> to exit the editor.
+
+			</section>
+
+			<section id="idk14">
+				<div class="headbar2">enabling network</div>
+			
+				First, install the network manager:
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp27"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp27">
+					pacman -S networkmanager
+				</div>
+				
+				Then enable it:
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp28"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp28">
+					systemctl enable --now NetworkManager
+				</div>
+
+				Now, the computer will be able to connect to the Internet automatically. <span class="text-danger font-italic">Remember, these settings
+				work only for the wired internet connection.</span>
+				
+			</section>
+
+			<section id="idk15">
+				<div class="headbar2">setting root passwd</div>
+			
+				First of all, check the internet connection. A wired connection is recommended. To check if your internet works, you need to ping to any
+				server, for example, the GNU website:
+				Now, we need to set a password for the root system for security reasons. Type:
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp29"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp29">
+					passwd
+				</div>
+				
+				and type your password twice. Be attentive, as <span class="text-danger font-italic">you will see nothing while typing</span>.
+				
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../3_arch_linux_install/assets/18_passwd.png" alt="password setting" width="700">
+			</section>
+
+			<section id="idk16">
+				<div class="headbar2">grub installation</div>
+			
+				GRUB is the most popular, highly configurable and easy to use bootloader. Install the GRUB bootloader and EFI boot manager packages by typing:
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp30"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp30">
+					pacman -S grub efibootmgr dosfstools os-prober mtools
+				</div>
+				<br><br>
+				<b>package description in short:</b>
+				<br><br>
+				<table class="text-center table table-sm table-dark table-striped table-bordered">
+					<tr><th>package</th><th>description</th></tr>
+					<tr><td>grub</td><td>user-friendly boot loader</td></tr>
+					<tr><td>efibootmgr</td><td>boot manager for uefi installation</td></tr>
+					<tr><td>dosfstools</td><td>package that includes the mkfs.fat and fsck.fat utilities</td></tr>
+					<tr><td>os-prober</td><td>package for detecting other existing OSs at boot time</td></tr>
+					<tr><td>mtools</td><td>collection of utilities for accessing MS-DOS disks from GNU</td></tr>
+				</table>
+				
+				Next, using these packages, install the bootlader on your system and generate its configuration files by running these commands one by one:
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp31"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp31">
+					mkdir /boot/efi<br>
+					mount /dev/sda1 /boot/efi<br>
+					lsblk <span class="hash"># to check whether everything has been mounted properly</span><br>
+					grub-install --target=x86_64-efi --bootloader-id=arch_uefi --efi-directory=/boot/efi --recheck<br>
+					grub-mkconfig -o /boot/grub/grub.cfg
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../3_arch_linux_install/assets/19_grub.png" alt="grub" width="700">
+				<hr color="#FFFFFF">
+
+				<b>legacy mode: </b>In case of legacy installation, install GRUB this way:
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp32"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp32">
+					pacman -S grub<br>
+					grub-install /dev/sda<br>
+					grub-mkconfig -o /boot/grub/grub.cfg
+				</div>
+				<hr color="#FFFFFF">
+			</section>
+
+			<section id="idk17">
+				<div class="headbar2">reboot the system</div>
+			
+				If you followed this long and did everything correctly than congrats! You successfully installed Arch Linux. Now it's time to reboot the system.
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp33"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp33">
+					exit <br>
+					umount -R /mnt<br>
+					reboot
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../3_arch_linux_install/assets/20_reboot.png" alt="reboot" width="700">
+				
+				you will see the GRUB welcome screen with Arch Linux installed. To continue, log in as a root user with a previously set password.
+
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../3_arch_linux_install/assets/21_boot.png" alt="boot screen" width="700">
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../3_arch_linux_install/assets/22_success.png" alt="logging in" width="700">
+
+				Here we have covered the very basic Arch Linux installation. However, it is very bare minimum and not usable yet. In the next session,
+				we will create our first non-root user and install a desktop environment. Until then, enjoy.
+
+			</section>
+		</div>
+		<footer class="text-center text-light py-5">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<h2>Koshai Limited</h2>
+							<p>Copyright &copy; 2021</p>
+							<span>Designed By: 
+								<a href="#" class="ml-2 text-warning" target="_blank">Rootminusone</a>
+							</span>
+							<div class="my-2">Contact us:</div>
+							<a href="#" target="_blank" class="text-light"><i class="fa fa-facebook-official fa-2x"></i></a>
+							<a href="#" target="_blank" class="text-light ml-2"><i class="fa fa-youtube-play fa-2x"></i></a>
+							<a href="#" target="_blank" class="text-light ml-2"><i class="fa fa-whatsapp fa-2x"></i></a>
+							<a href="#" target="_blank" class="text-light ml-2"><i class="fa fa-twitter fa-2x"></i></a>
+						</div>
+					</div>
+				</div>
+			</footer>
+		
+		<script src="../common/js/jquery.js"></script>
+		<script src="../common/js/popper.min.js"></script>
+		<script src="../common/js/bootstrap.min.js"></script>
+		<script src="../common/js/navbar-fixed.js"></script>
+		<script src="../common/js/clipboard.min.js"></script>
+		<script src="../common/js/common.js"></script>
+	</body>
+</html>

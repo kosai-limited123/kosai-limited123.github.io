@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Demo</title>
+		<link rel="shortcut icon" type="image/x-icon" href="../common/assets/logo.png">
+		<link rel="stylesheet" href="../common/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../common/awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../common/css/navbar-fixed.css">
+		<link rel="stylesheet" href="../common/css/scroll.css">
+		<link rel="stylesheet" href="../common/css/common.css">
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body class="text-justify">
+		<div id="idk0" class="second-body text-light">
+
+			<!--NAVIGATION BAR-->
+
+			<nav class="custm-nav navbar navbar-dark navbar-expand-md fixed-top">
+				<a class="navbar-brand">
+					<img height=40px; src="../common/assets/logo.png" alt="">
+					<span class="ml-2">Koshai Limited</span>
+				</a>
+				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#hdnv">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="hdnv">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item ml-auto"><a class="nav-link" href="#">Home</a></li>
+						<li class="nav-item ml-auto"><a class="nav-link" href="../archive/index.html">Archive</a></li>
+						<li class="nav-item ml-auto"><a class="nav-link" href="../members/index.html">Members</a></li>
+						<li class="nav-item ml-auto"><a class="nav-link" href="#">Projects</a></li>
+					</ul>
+				</div>
+			</nav>
+
+			<!--BREADCRUMB-->
+			<div class="inner">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="../archive/index.html">Archive</a></li>
+					<li class="breadcrumb-item">pacman, the package manager of Arch Linux</li>
+				</ol>
+			</div>
+
+			<span><a class="btn pos kol1 btn-outline-secondary" href="#idk0"><i class="fa fa-2x fa-arrow-circle-up"></i></a></span>
+
+			<div class="headbar">pacman, The package manager of Arch Linux</div>
+
+			Every GNU/Linux distribution has it's own package manager. The derived distributions use the same package manager of the
+			parent distributions which they are forked of. Package managers are the server of softwares which are well maintained by
+			the distribution management team. They help to install softwares in the machine so that you don't have to go to any site
+			to grab the software and install them manually and this makes GNU/Linux distributions much secure than most other operating
+			systems.
+			<br><br>
+			There are several package managers out there. They vary from the distributions. Arch Linux and it's derivatives use a
+			special package manager called pacman. It's very simple, powerful and easy to use. Today we will cover some of the basic
+			commands of this package manager.
+			<br><br>
+			The pacman commands have a very common structure. Every command starts with <span class="text-info">pacman</span>, followed
+			by <span class="text-info">a hyphen</span>, <span class="text-info">a capital letter</span>  and some
+			<span class="text-info">small letters</span> as additional options. Some commands need <span class="text-info">sudo</span>
+			privilege and some don't. We will explore them as we approach further.
+
+			<!--SUMMARY-->
+			<section id="idk_0" class="font-sm">
+				<div class="headbar2">summary</div>
+				<ul style="list-style-type:disc;" class="pagee">
+					<li><a href="#idk1">updating the system</a></li>
+					<li><a href="#idk2">installing the packages</a></li>
+					<li><a href="#idk3">removing the packages</a></li>
+					<li><a href="#idk4">querying the packages</a></li>
+					<li><a href="#idk5">some special commands</a>
+						<ul style="list-style-type:circle;" class="pagee">
+							<li><a href="#idk5_1">querying orphan packages</a></li>
+							<li><a href="#idk5_2">counting the number of packages</a></li>
+							<li><a href="#idk5_3">downloading packages in background</a></li>
+							<li><a href="#idk5_4">querying official and AUR packages</a></li>
+							<li><a href="#idk5_5">clearing older package cache</a></li>
+						</ul>
+					</li>
+					<li><a href="#idk6">tweaks and customization</a></li>
+					<li><a href="#idk8">configuring the mirror list</a></li>
+					<li><a href="#idk7">reading the documentation</a></li>
+				</ul>
+			</section>
+			
+			<section id="idk1">
+				<div class="headbar2">updating the system</div>
+			
+				Before updating the system, we need to sync the repositories and then pull them to our local machine. To do that, run this command:
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp1_1"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp1_1">
+					sudo pacman -Syy
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-none d-md-block" src="../5_pacman/assets/1_syy.png" alt="system update" width="700">
+
+				Here <span class="text-info">-S</span> syncs the online repositories to the local machine. <span class="text-info">y</span>
+				simply updates the machine. If the machine is already up to date, then the syncing process doesn't take place. But
+				if we add another <span class="text-info">y</span>, we force the syncing process to happen. If we don't want to force the
+				updating process, we can simply skip the letter.
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp1_2"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp1_2">
+					sudo pacman -Sy
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../5_pacman/assets/2_sy.png" alt="system update" width="700">
+
+				To update the machine, type:
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp1_3"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp1_3">
+					sudo pacman -Su
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../5_pacman/assets/3_su.png" alt="system update" width="700">
+
+				Here, <span class="text-info">u</span> stands for update. We can use this command only after using the previous one.
+				If we want to write the both commands at the same time, we can simply merge them together and write:
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp1_4"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp1_4">
+					sudo pacman -Syu
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../5_pacman/assets/4_syu.png" alt="system update" width="700">
+
+				This command means to sync the repositories and then update the machine. It is <span class="text-success">the safe
+				command</span> to run if we want to update.
+
+			</section>
+
+			<section id="idk2">
+				<div class="headbar2">installing the packages</div>
+			
+				To install the package, we will write the package name after the <span class="text-info">-S</span> command.
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp2_1"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp2_1">
+					sudo pacman -S htop
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../5_pacman/assets/5_s.png" alt="system update" width="700">
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../5_pacman/assets/6_htop.png" alt="system update" width="700">
+
+				Here we are installing a software named "htop". If we want, we can install multiple packages at the same time.
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp2_2"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp2_2">
+					sudo pacman -S vim emacs firefox
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../5_pacman/assets/7_firefox.png" alt="system update" width="700">
+
+				Here we are installing three softwares named "vim", "emacs" and "firefox" at the same time.
+
+				Sometimes it can happen that, we want to install a package but we don't know the exact name. Therefore
+				installing with that wrong name will throw an error. To avoid that, we would use this command:
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp2_3"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp2_3">
+					pacman -Ss pygame
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../5_pacman/assets/8_pygame.png" alt="system update" width="700">
+
+				Here, we want to install a package named "pygame", but we don't know what the exact package name is. Therefore we are
+				searching for this name to get the relevant packages.
+
+			</section>
+
+			<section id="idk3">
+				<div class="headbar2">removing the packages</div>
+			
+				To remove a package, user <span class="text-info">-R</span> command.
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp3_1"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp3_1">
+					sudo pacman -R htop
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../5_pacman/assets/9_s.png" alt="system update" width="700">
+
+				Sometimes, packages come with a bunch of dependencies. If we want to uninstall the package along side with its
+				dependencies, use previous command with <span class="text-info">s</span> flag.
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp3_2"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp3_2">
+					sudo pacman -Rs python-pygame
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../5_pacman/assets/10_rs.png" alt="system update" width="700">
+
+				Sometimes the packages creates their own .config files. So removing those packages only doesn't remove those configuration files. If we
+				want to remove the .config files as well, use <span class="text-info">n</span> flag!
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp3_3"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp3_3">
+					sudo pacman -Rns emacs
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../5_pacman/assets/11_rns.png" alt="system update" width="700">
+
+				It is the <span class="text-success">preferred command</span> for removing packages.
+
+			</section>
+
+			<section id="idk4">
+				<div class="headbar2">querying the packages</div>
+			
+				If we want to query all the packages installed in the machine, we can use the <span class="text-info">-Q</span> command.
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp4_1"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp4_1">
+					pacman -Q
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../5_pacman/assets/12_q.png" alt="system update" width="700">
+
+				If you want to see the only packages you installed on your system, then use the previous command with an
+				<span class="text-info">e</span> flag!
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp4_2"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp4_2">
+					pacman -Qe
+				</div>
+
+				If we want to avoid the version number, add the <span class="text-info">q</span> flag.
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp4_3"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp4_3">
+					pacman -Qq
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../5_pacman/assets/13_qq.png" alt="system update" width="700">
+
+				If you want to see if any package is installed in your system, use the <span class="text-info">s</span> flag!
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp4_4"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp4_4">
+					pacman -Qs gedit
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../5_pacman/assets/14_qs.png" alt="system update" width="700">
+
+				<div class="text-success font-italic">
+					<u>TIPS</u>: Querying any package doesn't require root privileges as it doesn't install or remove any package in the system. So
+					we don't use "sudo" here. Although using "sudo" also gives us the same output, <span class="text-danger">it is better not to use
+					where it is not needed</span>.
+				</div><br>
+
+			</section>
+
+			<section id="idk5">
+				<div class="headbar2">some special commands</div>
+			
+				At this point, we are done with the basic commands. If you know these commands, you are ready to go. But if you want to know some
+				additional stuffs, then we can go ahead!
+				
+				<section id="idk5_1">
+					<div class="headbar2" style="margin-left:2rem;">querying orphan packages</div>
+
+					Sometimes we end up installing some dependencies which are not needed anymore. These packages are known as orphan packages. Maybe
+					they are required only once for building the programs and never required anymore. These packages make the system bloated. If you
+					want to query the orphan packages installed in your system, run this command: 
+					
+					<div class="hmm1">
+						<div class="row">
+							<div class="col-6">bash</div>
+							<div class="col-6 text-right">
+								<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp5_1_1"><i class="fa fa-copy"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="hmm" id="cp5_1_1">
+						pacman -Qdt
+					</div>
+
+					Maybe you don't even look at the orphan packages. You just wanna get rid of them. Then type this command:
+
+					<div class="hmm1">
+						<div class="row">
+							<div class="col-6">bash</div>
+							<div class="col-6 text-right">
+								<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp5_1_2"><i class="fa fa-copy"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="hmm" id="cp5_1_2">
+						sudo pacman -Rns $(pacman -Qdtq)
+					</div>
+				</section>
+
+				<section id="idk5_2">
+					<div class="headbar2" style="margin-left:2rem;">counting the number of packages</div>
+
+					Most of the GNU/Linux distributions have a utility named wc. It stands for "word count". It can count words, characters, line numbers
+					etc. Piping wc command with pacman command wive give us the package number.
+					<br><br>
+					If you want to know the total number of packages installed in your system via pacman package manager, then run this command:
+
+					<div class="hmm1">
+						<div class="row">
+							<div class="col-6">bash</div>
+							<div class="col-6 text-right">
+								<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp5_2_1"><i class="fa fa-copy"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="hmm" id="cp5_2_1">
+						pacman -Q | wc -l
+					</div>
+
+					Similarly If you want to know the number of packages you installed only, then run this command:
+
+					<div class="hmm1">
+						<div class="row">
+							<div class="col-6">bash</div>
+							<div class="col-6 text-right">
+								<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp5_2_2"><i class="fa fa-copy"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="hmm" id="cp5_2_2">
+						pacman -Qe | wc -l
+					</div>
+					<img class="rounded mx-auto my-4 d-none d-md-block" src="../5_pacman/assets/15_wc.png" alt="system update" width="700">
+				</section>
+
+				<section id="idk5_3">
+					<div class="headbar2" style="margin-left:2rem;">downloading packages in background</div>
+
+					Another pacman command you may get important sometimes. It is actually an updating command but a little advanced.
+
+					<div class="hmm1">
+						<div class="row">
+							<div class="col-6">bash</div>
+							<div class="col-6 text-right">
+								<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp5_3_1"><i class="fa fa-copy"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="hmm" id="cp5_3_1">
+						sudo pacman -Syyuw
+					</div>
+
+					Here <span class="text-info">w</span> flag is preventing the packages to be installed directly. Rather it is downloading them so that you can manually install them
+					later. The rest of the part has been discussed earlier.
+					<br><br>
+					<div class="text-warning font-italic">
+						<u>CAUTION</u>: If you don't know what you are doing. Don't use this command.
+					</div>
+				</section>
+
+				<section id="idk5_4">
+					<div class="headbar2" style="margin-left:2rem;">querying official and AUR packages</div>
+
+					When you query for the packages using the previous commands, you are getting packages from the main repositories as well as local or AUR repositories.
+					<br><br>
+					If you want to get the packages installed from the official pacman repositories only, then type:
+
+					<div class="hmm1">
+						<div class="row">
+							<div class="col-6">bash</div>
+							<div class="col-6 text-right">
+								<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp5_4_1"><i class="fa fa-copy"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="hmm" id="cp5_4_1">
+						pacman -Qqen
+					</div>
+
+					If you want to get the AUR packages only, then type:
+
+					<div class="hmm1">
+						<div class="row">
+							<div class="col-6">bash</div>
+							<div class="col-6 text-right">
+								<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp5_4_2"><i class="fa fa-copy"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="hmm" id="cp5_4_2">
+						pacman -Qqem
+					</div>
+				</section>
+
+				<section id="idk5_5">
+					<div class="headbar2" style="margin-left:2rem;">clearing older package cache</div>
+
+					When you install new packages or update your machine, older versions of packages can still remain. It makes the machine bloated. To remove those older versions, type:
+
+					<div class="hmm1">
+						<div class="row">
+							<div class="col-6">bash</div>
+							<div class="col-6 text-right">
+								<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp5_5_1"><i class="fa fa-copy"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="hmm" id="cp5_5_1">
+						sudo pacman -Sc
+					</div>
+					<img class="rounded mx-auto my-4 d-none d-md-block" src="../5_pacman/assets/16_sc.png" alt="system update" width="700">
+				</section>
+			</section>
+
+			<section id="idk6">
+				<div class="headbar2">tweaks and customization</div>
+			
+				For tweaking and customization, edit the <span class="text-info font-italic">/etc/pacman.conf</span>
+				file. Type:
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp6_1"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp6_1">
+					sudo nano /etc/pacman.conf
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../5_pacman/assets/17_conf.png" alt="system update" width="700">
+				
+				Find the word "Color". Activate the search option by pressing the shortcut <span class="kbd">Ctrl</span> + <span class="kbd">W</span>
+				and type <span class="text-info">#Color</span>. Press <span class="kbd">Enter</span> .
+				<br><br>
+				You should jump to the line <span class="text-info">#Color</span>. Uncomment it by removing the <i>#</i> sign. Go to the line
+				<span class="text-info">#VerbosePkgLists</span>. Under that line write <span class="text-info">ILoveCandy</span>.
+				<br><br>
+				<span class="kbd">Ctrl</span> + <span class="kbd">O</span> <span class="kbd">Enter</span> to save and <span class="kbd">Ctrl</span> +
+				<span class="kbd">X</span> <span class="kbd">Enter</span> to exit the editor.
+				<br><br>
+				Now you will be able to see some colors and pacman eating candy effects in terminal.
+
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../5_pacman/assets/20_color.png" alt="system update" width="700">
+			</section>
+
+			<section id="idk8">
+				<div class="headbar2">configuring the mirror list</div>
+			
+				Sometimes you may get your internet speed slow even though you got a decent internet connection. There may be multiple reasons for it. But one
+				of the prominent reason may be your mirror-list.
+				<br><br>
+				The pacman package manager collects packages from the servers around the world. May be you are communicating with a server that is far away from
+				your current location. In that case, you need to tweak the mirror-list a bit. For that, edit the <span class="text-info font-italic">
+				/etc/pacman.d/mirrorlist</span> file.
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp8_1"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp8_1">
+					sudo nano /etc/pacman.d/mirrorlist
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../5_pacman/assets/18_mirror.png" alt="system update" width="700">
+
+				Here you will see a bunch of server mirrors. <span class="text-warning">pacman always prioritize the first mirrors rather than the last ones.</span> So tweak it as you want.
+
+			</section>
+
+			<section id="idk7">
+				<div class="headbar2">reading the documentation</div>
+			
+				Here we have tried to cover some of the very basic pacman commands as well as some additional commands. However, if you want explore more than
+				the best way is to read the documentation. To read it, type:
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp7_1"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp7_1">
+					man pacman
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../5_pacman/assets/19_man.png" alt="system update" width="700">
+
+				Read the documentation by scrolling and press <span class="kbd">q</span> to quit.
+				<br>
+				That's it. Enjoy the pacman package manager.
+
+			</section>
+		</div>
+		<footer class="text-center text-light py-5">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<h2>Koshai Limited</h2>
+							<p>Copyright &copy; 2021</p>
+							<span>Designed By: 
+								<a href="#" class="ml-2 text-warning" target="_blank">Rootminusone</a>
+							</span>
+							<div class="my-2">Contact us:</div>
+							<a href="#" target="_blank" class="text-light"><i class="fa fa-facebook-official fa-2x"></i></a>
+							<a href="#" target="_blank" class="text-light ml-2"><i class="fa fa-youtube-play fa-2x"></i></a>
+							<a href="#" target="_blank" class="text-light ml-2"><i class="fa fa-whatsapp fa-2x"></i></a>
+							<a href="#" target="_blank" class="text-light ml-2"><i class="fa fa-twitter fa-2x"></i></a>
+						</div>
+					</div>
+				</div>
+			</footer>
+		
+		<script src="../common/js/jquery.js"></script>
+		<script src="../common/js/popper.min.js"></script>
+		<script src="../common/js/bootstrap.min.js"></script>
+		<script src="../common/js/navbar-fixed.js"></script>
+		<script src="../common/js/clipboard.min.js"></script>
+		<script src="../common/js/common.js"></script>
+	</body>
+</html>

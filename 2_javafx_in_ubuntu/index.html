@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Demo</title>
+		<link rel="shortcut icon" type="image/x-icon" href="../common/assets/logo.png">
+		<link rel="stylesheet" href="../common/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../common/awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../common/css/navbar-fixed.css">
+		<link rel="stylesheet" href="../common/css/scroll.css">
+		<link rel="stylesheet" href="../common/css/monokai.css">
+		<link rel="stylesheet" href="../common/css/common.css">
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<div id="idk0" class="second-body text-light">
+
+			<!--NAVIGATION BAR-->
+
+			<nav class="custm-nav navbar navbar-dark navbar-expand-md fixed-top">
+				<a class="navbar-brand" href="#idk0">
+					<img height=40px; src="../common/assets/logo.png" alt="">
+					<span class="ml-2">Koshai Limited</span>
+				</a>
+				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#hdnv">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="hdnv">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item ml-auto"><a class="nav-link" href="#">Home</a></li>
+						<li class="nav-item ml-auto"><a class="nav-link" href="../archive/index.html">Archive</a></li>
+						<li class="nav-item ml-auto"><a class="nav-link" href="../members/index.html">Members</a></li>
+						<li class="nav-item ml-auto"><a class="nav-link" href="#">Projects</a></li>
+					</ul>
+				</div>
+			</nav>
+
+			<!--BREADCRUMB-->
+			<div class="inner">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="../archive/index.html">Archive</a></li>
+					<li class="breadcrumb-item">Install Javafx In Ubuntu</li>
+				</ol>
+			</div>
+
+			<!--SIDE NAV-->
+
+			<div id="mySidenav" class="sidenav kol">
+				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+				<a href="#idk1">download javafx package</a>
+				<a href="#idk2">execute the program</a>
+			</div>
+			<span onclick="openNav()"><button class="btn pos kol1 btn-outline-secondary"><i class="fa fa-bars"></i></button></span>
+
+			<div class="headbar">Installing Javafx in Ubuntu</div>
+			Javafx is an awesome module to make gui projects. But unfortunately this module doesn't come with java installation anymore. This page goes over how to install javafx in ubuntu and its derivatives.
+			
+			<section id="idk1">
+				<div class="headbar2">download javafx package</div>
+				First of all, we need to check which version of javafx is installed on the system. This can be checked by the bellow command.
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp1"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp1">
+					java --version
+				</div>
+				Then we have to download javafx package according to the java version number. glounhq.com provides the different versions of javafx packages including the LTS versions.
+				This can be downloaded from <span class="pagee"><a target="_blank" href="https://gluonhq.com/products/javafx/">here</a></span>. 
+			</section>
+
+			<section id="idk2">
+				<div class="headbar2">execute the program</div>
+				Now we need to extract the file and keep the files in the <span class="font-italic text-info">/.local/share</span> directory. Now download the sample file
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp2"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<pre id="cp2">
+					<code data-language="java">import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+
+public class Main extends Application{
+Button button;
+public static void main(String[] args){
+	launch(args);}
+
+@Override
+public void start(Stage primaryStage) throws Exception{
+	primaryStage.setTitle("Title of the Window");
+	button = new Button();
+	button.setText("Click me");
+	StackPane layout = new StackPane();
+	layout.getChildren().add(button);
+	Scene scene = new Scene(layout, 300, 250);
+	primaryStage.setScene(scene);
+	primaryStage.show();}}</code>
+				</pre>
+
+				<span class="pagee"><a target="_blank" href="assets/Main.java">Main.java</a></span> and keep it in the home directory.<br><br>
+				Compiler the program.
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp3"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp3">
+					javac --module-path $HOME/.local/javafx/lib --add-modules javafx.base,javafx.controls,javafx.fxml,javafx.graphics,javafx.media,javafx.swing,javafx.web,javafx.swt Main.java
+				</div>
+				Execute the program.
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp4"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp4">
+					java --module-path $HOME/.local/javafx/lib --add-modules javafx.base,javafx.controls,javafx.fxml,javafx.graphics,javafx.media,javafx.swing,javafx.web,javafx.swt Main
+				</div>
+				If everything works fine, the bellow output will be shown.
+				<div class="my-4 text-center"><img src="assets/outp.png"></div>
+				Well, that's it. Enjoy building the javafx projects.
+			</section>
+		</div>
+		<footer class="text-center text-light py-5">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<h2>Koshai Limited</h2>
+							<p>Copyright &copy; 2020</p>
+							<span>Designed By: 
+								<a href="#" class="ml-2 text-warning" target="_blank">Rootminusone</a>
+							</span>
+							<div class="my-2">Contact us:</div>
+							<a href="#" target="_blank" class="text-light"><i class="fa fa-facebook-official fa-2x"></i></a>
+							<a href="#" target="_blank" class="text-light ml-2"><i class="fa fa-youtube-play fa-2x"></i></a>
+							<a href="#" target="_blank" class="text-light ml-2"><i class="fa fa-whatsapp fa-2x"></i></a>
+							<a href="#" target="_blank" class="text-light ml-2"><i class="fa fa-twitter fa-2x"></i></a>
+
+						</div>
+					</div>
+				</div>
+			</footer>
+
+		<script src="../common/js/jquery.js"></script>
+		<script src="../common/js/popper.min.js"></script>
+		<script src="../common/js/bootstrap.min.js"></script>
+		<script src="../common/js/navbar-fixed.js"></script>
+		<script src="../common/js/rainbow.min.js"></script>
+    	<script src="../common/js/generic.js"></script>
+    	<script src="../common/language/c.js"></script>
+		<script src="../common/js/clipboard.min.js"></script>
+		<script src="../common/js/common.js"></script>
+		<script src="script.js"></script>
+
+	</body>
+</html>
