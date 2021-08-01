@@ -10,11 +10,12 @@
 		<link rel="stylesheet" href="../common/awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="../common/css/navbar-fixed.css">
 		<link rel="stylesheet" href="../common/css/scroll.css">
+		<link rel="stylesheet" href="../common/css/common.css">
 		<link rel="stylesheet" href="style.css">
 
 	</head>
 	<body>
-		<div id="idk0" class="second-body text-light">
+		<div id="idk0" class="second_body text-light">
 
 			<!--NAVIGATION BAR-->
 
@@ -28,43 +29,40 @@
 				</button>
 				<div class="collapse navbar-collapse" id="hdnv">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item ml-auto"><a class="nav-link" href="../home/index.html">Home</a></li>
-						<li class="nav-item ml-auto"><a class="nav-link disabled" href="#">Archive</a></li>
+						<li class="nav-item ml-auto"><a class="nav-link disabled" href="#">Home</a></li>
+						<li class="nav-item ml-auto"><a class="nav-link" href="../archive/index.html">Archive</a></li>
 						<li class="nav-item ml-auto"><a class="nav-link" href="../members/index.html">Members</a></li>
 						<li class="nav-item ml-auto"><a class="nav-link" href="../page_not_found/index.html">Projects</a></li>
 					</ul>
 				</div>
 			</nav>
 			
-			<div class="inner">
-				<h1 class="text-center terms_center">Archive</h1>
-			</div>
-			<div class="year">2021</div>
-			<ul class="ml-4 archive_ul">
-				<li>
-					<span class="time">20 jul</span>
-					<a href="../5_pacman/index.html">pacman, the package manager of Arch Linux</a>
-				</li>
-				<li>
-					<span class="time">17 jul</span>
-					<a href="../4_DE_install/index.html">desktop environment installation in Arch Linux</a>
-				</li>
-				<li>
-					<span class="time">15 jul</span>
-					<a href="../3_arch_linux_install/index.html">Arch Linux installation</a>
-				</li>
-			</ul>
-			<div class="year">2020</div>
-			<ul class="ml-4 archive_ul">
-				<li>
-					<span class="time">16 sep</span>
-					<a href="../2_javafx_in_ubuntu/index.html">install javafx in ubuntu</a>
-				</li>
-				<li>
-					<span class="time">10 sep</span>
-					<a href="../1_remove_snaps/index.html">remove snaps</a>
-				</li>
-			</ul>
+			<section class="inner">
+				<img class="rounded mx-auto my-4 d-block" src="../common/assets/logo.png" alt="">
+				<h1 class="display-3 text-center">Kosai Limited</h1>
+			</section>
+			<p class="lead text-justify" style="font-size: 1.5rem;">
+				Welcome to our website. Here we discuss about various computer related things, problems, skills and memes. This is
+				a small website where you will likely find various computer programming based solutions. Altough this platform is
+				mostly for sharing knowledge, entertainment is also another option ;)
+			</p>
+			<section>
+				<div id="bigy" class="row">
+					<div class="col-md-4 text-center mx-auto">
+						<i class="fa fa-terminal"></i>
+						<p>we talk out various linux contents and terminal based commands and applications</p>
+					</div>
+					<div class="col-md-4 text-center mx-auto">
+						<i class="fa fa-gears"></i>
+						<p>We also discuss about coding stuffs and explain how you can setup your IDE and environment
+							for that specific language</p>
+					</div>
+					<div class="col-md-4 text-center mx-auto">
+						<i class="fa fa-smile-o"></i>
+						<p>Beside serious stuffs, we also create memes and entertainment contents</p>
+					</div>
+				</div>
+			</section>
 		</div>
 
 		<footer class="text-center text-light py-5">
@@ -80,7 +78,6 @@
 							<i class="fa fa-youtube-play fa-2x"></i></a>
 						<a href="../page_not_found/index.html" class="text-light ml-2"><i class="fa fa-whatsapp fa-2x"></i></a>
 						<a href="../page_not_found/index.html" class="text-light ml-2"><i class="fa fa-twitter fa-2x"></i></a>
-
 					</div>
 				</div>
 			</div>
