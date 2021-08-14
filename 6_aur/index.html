@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Kosai Limited</title>
+		<link rel="shortcut icon" type="image/x-icon" href="../common/assets/logo.png">
+		<link rel="stylesheet" href="../common/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../common/awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../common/css/navbar-fixed.css">
+		<link rel="stylesheet" href="../common/css/scroll.css">
+		<link rel="stylesheet" href="../common/css/common.css">
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body class="text-justify">
+		<div id="idk0" class="second-body text-light">
+
+			<!--NAVIGATION BAR-->
+
+			<nav class="custm-nav navbar navbar-dark navbar-expand-md fixed-top">
+				<a class="navbar-brand">
+					<img height=40px; src="../common/assets/logo.png" alt="">
+					<span class="ml-2">Kosai Limited</span>
+				</a>
+				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#hdnv">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="hdnv">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item ml-auto"><a class="nav-link" href="../home/index.html">Home</a></li>
+						<li class="nav-item ml-auto"><a class="nav-link" href="../archive/index.html">Archive</a></li>
+						<li class="nav-item ml-auto"><a class="nav-link" href="../members/index.html">Members</a></li>
+						<li class="nav-item ml-auto"><a class="nav-link" href="../projects/index.html">Projects</a></li>
+					</ul>
+				</div>
+			</nav>
+
+			<!--BREADCRUMB-->
+			<div class="inner">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="../archive/index.html">Archive</a></li>
+					<li class="breadcrumb-item">enabling AUR in Arch Linux</li>
+				</ol>
+			</div>
+
+			<span><a class="btn pos kol1 btn-outline-secondary" href="#idk0"><i class="fa fa-2x fa-arrow-circle-up"></i></a></span>
+
+			<div class="headbar">enabling AUR in Arch Linux</div>
+
+			Although many Linux distros have a ton of packages in their repositories, sometimes they are not enough. Especially when
+			it comes to install some popular non-free proprietary packages. Because most of the GNU Linux distributions ship with
+			only FOSS softwares.
+			<br>
+			To mitigate this problems, some universal package managers come into play. Some of the popular ones are <span class="pagee">
+			<a target="_blank" href="https://www.flatpak.org/">flatpak</a></span>, <span class="pagee"><a target="_blank"
+			href="https://snapcraft.io/">snap</a></span> and <span class="pagee"><a target="_blank" href="https://www.appimagehub.com/">
+			appimage</a></span>. We will cover them later.
+			<br>
+			Here Arch Linux is ahead of other distros. Arch Linux has its own unofficial repository named <span class="pagee">
+			<a target="_blank" href="https://aur.archlinux.org/">AUR</a></span> (Arch User Repository). Many Arch Linux users across the
+			globe submit their works here and if submitted, they are ready for all Arch Linux as well as Arch based distros users to
+			install in their hardware.
+			<br>
+			If there is any linux package that is not in the Arch Linux repository, then it is almost certain that, it may be found in AUR.
+			Another advantage of AUR is, it doesn't make the system bloated like other universal linux package managers.
+			<br>
+			By default, AUR is not enabled, we need to enable them manually. In this section we will go through that process.
+
+			<!--SUMMARY-->
+			<section id="idk_0" class="font-sm">
+				<div class="headbar2">summary</div>
+				<ul style="list-style-type:disc;" class="pagee">
+					<li><a href="#idk1">update and upgrade your system</a></li>
+					<li><a href="#idk2">installing git</a></li>
+					<li><a href="#idk3">installing an AUR helper</a></li>
+					<li><a href="#idk4">installing softwares from AUR</a></li>
+					<li><a href="#idk5">checking the installed software</a></li>
+					<li><a href="#idk6">updating the AUR packages</a></li>
+				</ul>
+			</section>
+			
+			<section id="idk1">
+				<div class="headbar2">update and upgrade your system</div>
+			
+				Before doing anything, make sure your system is up to date.
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp1"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp1">
+					sudo pacman -Syu
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-none d-md-block" src="../6_aur/assets/1_syu.png" alt="system update" width="700">
+			</section>
+
+			<section id="idk2">
+				<div class="headbar2">installing git</div>
+			
+				To install git, run this command:
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp2"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp2">
+					sudo pacman -S git
+				</div>
+			</section>
+
+			<section id="idk3">
+				<div class="headbar2">installing an AUR helper</div>
+			
+				AUR helpers are the programs that help installing AUR packages very easily. Basically enabling AUR means installing AUR
+				helper programs.
+				<br>
+				There are many AUR helper programs out there. Here we will install <span class="text-info">paru</span>. It is written in
+				rust language and the successor of <span class="text-info">yay</span>, another AUR helper. While yay is the most popular
+				one, it is not recommended for new users.
+				<br>
+				To install paru, execute the following commands one by one:
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp3"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp3">
+					git clone "https://aur.archlinux.org/paru.git"<br>
+					cd paru<br>
+					makepkg -si
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../6_aur/assets/2_paru.png" alt="paru" width="700">
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../6_aur/assets/3_paru_1.png" alt="paru" width="700">
+
+				After the installation is successfully done, close the terminal and open a new one.
+
+			</section>
+
+			<section id="idk4">
+				<div class="headbar2">installing softwares from AUR</div>
+			
+				To speak frankly, paru commands are almost same like the pacman commands. Meaning, installing and querying softwares
+				are same in both paru and pacman. Here is an example.
+				<br>
+				Let's install <span class="pagee"><a target="_blank" href="https://www.google.com/chrome/">google-chrome</a></span>. It is not in pacman
+				package manager. But it is available in AUR. Let's check it first.
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp4_1"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp4_1">
+					paru -Ss google-chrome
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../6_aur/assets/4_search.png" alt="system update" width="700">
+
+				Now it's time to install the software. To do that, run:
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp4_2"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp4_2">
+					paru -S google-chrome
+				</div>
+
+				First of all, it will come up with the packages of same name or relevant one. In our case we need the first package, so we press 
+				<span class="text-info">1</span>.
+				<br>
+				Then there will come an option <span class="text-info">:: Proceed to review? [Y/n]:</span> Simply press <span class="text-info">
+				Y</span>.
+				<br>
+				After that, you will be presented with the review notes. Please go through them carefully if you understand them. After finishing
+				reading, press <span class="text-info">q</span>.
+				
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../6_aur/assets/5_install.png" alt="paru" width="700">
+				
+				Now you will see the package being downloaded.
+				
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../6_aur/assets/6_download.png" alt="paru" width="700">
+
+			</section>
+
+			<section id="idk5">
+				<div class="headbar2">checking the installed software</div>
+			
+				If you have done everything till this point then congrats... You successfully installed a package from AUR. Now it's time to check
+				the package. Go to your panel, and search for it. If everything is done properly, you will see the package installed.
+
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../6_aur/assets/7_desktop.png" alt="paru" width="700">
+			</section>
+
+			<section id="idk6">
+				<div class="headbar2">updating the AUR packages</div>
+			
+				To update the AUR packages, simply run:
+	
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp6"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp6">
+					paru -Syu --aur
+				</div>
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../6_aur/assets/8_aur_upgrade.png" alt="paru" width="700">
+				That's all for now. Hope you enjoy your Linux system more :)
+			</section>
+
+		</div>
+		<footer class="text-center text-light py-5">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<h2>Kosai Limited</h2>
+							<p>Copyright &copy; 2021</p>
+							<span>Designed By: 
+								<a href="../members_details/rootminusone/index.html" class="ml-2 text-warning">Rootminusone</a>
+							</span>
+							<div class="my-2">Contact us:</div>
+							<a href="https://www.facebook.com/koshaiLimited/" target="_blank" class="text-light">
+								<i class="fa fa-facebook-official fa-2x"></i></a>
+							<a href="https://www.youtube.com/channel/UCqOOTuqW_zw5x6ZUuMul3wQ" target="_blank" class="text-light ml-2">
+								<i class="fa fa-youtube-play fa-2x"></i></a>
+							<a href="../page_not_found/index.html" class="text-light ml-2"><i class="fa fa-whatsapp fa-2x"></i></a>
+							<a href="../page_not_found/index.html" class="text-light ml-2"><i class="fa fa-twitter fa-2x"></i></a>
+						</div>
+					</div>
+				</div>
+			</footer>
+		
+		<script src="../common/js/jquery.js"></script>
+		<script src="../common/js/popper.min.js"></script>
+		<script src="../common/js/bootstrap.min.js"></script>
+		<script src="../common/js/navbar-fixed.js"></script>
+		<script src="../common/js/clipboard.min.js"></script>
+		<script src="../common/js/common.js"></script>
+	</body>
+</html>
