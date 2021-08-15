@@ -35,13 +35,15 @@ body{
 	font-weight:900;
 	font-family:arial;
 	margin-bottom:10px;
-	color:#add481;}
+	color:#add481;
+	text-align: left;}
 .headbar2{
 	font-size:2rem;
 	font-weight:900;
 	font-family:arial;
 	margin:10px 0px;
-	color:#add481;}
+	color:#add481;
+	text-align: left;}
 .hmm{
     margin:0px 20px 40px 20px;
     background-color:#171f2e;
