@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Kosai Limited</title>
+		<link rel="shortcut icon" type="image/x-icon" href="../common/assets/logo.png">
+		<link rel="stylesheet" href="../common/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../common/awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../common/css/navbar-fixed.css">
+		<link rel="stylesheet" href="../common/css/scroll.css">
+		<link rel="stylesheet" href="../common/css/common.css">
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body class="text-justify">
+		<div id="idk0" class="second-body text-light">
+
+			<!--NAVIGATION BAR-->
+
+			<nav class="custm-nav navbar navbar-dark navbar-expand-md fixed-top">
+				<a class="navbar-brand">
+					<img height=40px; src="../common/assets/logo.png" alt="">
+					<span class="ml-2">Kosai Limited</span>
+				</a>
+				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#hdnv">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="hdnv">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item ml-auto"><a class="nav-link" href="../home/index.html">Home</a></li>
+						<li class="nav-item ml-auto"><a class="nav-link" href="../archive/index.html">Archive</a></li>
+						<li class="nav-item ml-auto"><a class="nav-link" href="../about_me/index.html">About me</a></li>
+						<li class="nav-item ml-auto"><a class="nav-link" href="../projects/index.html">Projects</a></li>
+					</ul>
+				</div>
+			</nav>
+
+			<!--BREADCRUMB-->
+			<div class="inner">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="../archive/index.html">Archive</a></li>
+					<li class="breadcrumb-item">installing ruby on rails in debian</li>
+				</ol>
+			</div>
+
+			<span><a class="btn pos kol1 btn-outline-secondary" href="#idk0"><i class="fa fa-2x fa-arrow-circle-up"></i></a></span>
+
+			<div class="headbar">installing ruby on rails in debian</div>
+
+			Debian is a very stable GNU Linux distribution which makes it a strong candidate for web servers. Here we will discuss
+			how to install ruby on rails in debian.
+
+			<!--SUMMARY-->
+			<section id="idk_0" class="font-sm">
+				<div class="headbar2">summary</div>
+				<ul style="list-style-type:disc;" class="pagee">
+					<li><a href="#idk1">update and upgrade your system</a></li>
+					<li><a href="#idk2">installing apache</a></li>
+					<li><a href="#idk3">installing curl</a></li>
+					<li><a href="#idk4">installing ruby</a></li>
+					<li><a href="#idk5">installing additional components</a></li>
+					<li><a href="#idk6">installing rails</a></li>
+					<li><a href="#idk7">installing yarn</a></li>
+					<li><a href="#idk8">installing sqlite</a></li>
+					<li><a href="#idk9">creating app</a></li>
+					<li><a href="#idk10">testing the app</a></li>
+				</ul>
+			</section>
+			
+			<section id="idk1">
+				<div class="headbar2">update and upgrade your system</div>
+			
+				Before doing anything, make sure your system is up to date.
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp1"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp1">
+					sudo apt update && sudo apt upgrade
+				</div>
+				<img class="rounded mx-auto d-none d-md-none d-md-block" src="../7_rails_in_debian/assets/1_upgrade.png" alt="system update" width="700">
+			</section>
+
+			<section id="idk2">
+				<div class="headbar2">installing apache</div>
+			
+				Apache is a free and open sourced web server to test if our rails server is up and running. To install apache, run:
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp2"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp2">
+					sudo apt install apache2
+				</div>
+				<img class="rounded mx-auto d-none d-md-block" src="../7_rails_in_debian/assets/7_apache.png" alt="apache install" width="700">
+			</section>
+
+			<section id="idk3">
+				<div class="headbar2">installing curl</div>
+			
+				Since debian is shipped with old packages, some packages won't run without the latest versions. That's why we need to
+				add those programs' repositories to our <span class="text-info font-italic">/etc/apt/sources.list</span> file. That's
+				why we need <span class="text-info">curl</span> for importing the gpg keys of those repos.
+				<br>
+				To install curl, execute the following command:
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp3"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp3">
+					sudo apt install curl
+				</div>
+			</section>
+
+			<section id="idk4">
+				<div class="headbar2">installing ruby</div>
+			
+				Since rails is based on ruby. We need to install it first. Run:
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp4_1"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp4_1">
+					sudo apt install ruby ruby-dev
+				</div>
+				<img class="rounded mx-auto d-none d-md-block" src="../7_rails_in_debian/assets/2_ruby.png" alt="ruby install" width="700">
+			</section>
+
+			<section id="idk5">
+				<div class="headbar2">installing additional components</div>
+			
+				Now we need some additional packages to be installed. First, install nodejs since it might be useful:
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp5_1"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp5_1">
+					sudo apt install nodejs
+				</div>
+				<img class="rounded mx-auto d-none d-md-block" src="../7_rails_in_debian/assets/3_nodejs.png" alt="install nodejs" width="700">
+
+				We also need standard GNU C++ compiler for some libraries to work:
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp5_2"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp5_2">
+					sudo apt install gcc g++ make
+				</div>
+				<img class="rounded mx-auto d-none d-md-block" src="../7_rails_in_debian/assets/4_gcc.png" alt="install gcc" width="700">
+			</section>
+
+			<section id="idk6">
+				<div class="headbar2">installing rails</div>
+			
+				To install rails, simply run:
+	
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp6"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp6">
+					sudo gem install rails
+				</div>
+				<img class="rounded mx-auto d-none d-md-block" src="../7_rails_in_debian/assets/5_rails.png" alt="rail install" width="700">
+				
+				However, we are not done yet. We need some more components to be installed for database management.
+			
+			</section>
+
+			<section id="idk7">
+				<div class="headbar2">installing yarn</div>
+			
+				Although debian has yarn in its repo, it is not up to date. For that we need to install it from another repository. To import them,
+				execute the commands one by one:
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp7_1"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp7_1">
+					curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -<br>
+					echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+				</div>
+				<img class="rounded mx-auto d-none d-md-block" src="../7_rails_in_debian/assets/6_repo_yarn.png" alt="yarn repository" width="700">
+
+				Now update the system and install yarn.
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp7_2"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp7_2">
+					sudo apt update<br>
+					sudo apt install --no-install-recommends yarn
+				</div>
+			</section>
+
+			<section id="idk8">
+				<div class="headbar2">installing sqlite</div>
+			
+				Now we need to install packages that deal with database management. Here we will use <span class="text-info">sqlite</span>. Install
+				the below packages:
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp8_1"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp8_1">
+					sudo apt install sqlite3 libsqlite3-dev
+				</div>
+				<img class="rounded mx-auto d-none d-md-block" src="../7_rails_in_debian/assets/8_sqlite3.png" alt="sqlite package" width="700">
+
+				Install the gem library of this package:
+
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp8_2"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp8_2">
+					sudo gem install sqlite3-ruby
+				</div>
+				<img class="rounded mx-auto d-none d-md-block" src="../7_rails_in_debian/assets/9_sqlite_gem.png" alt="sqlite gem" width="700">
+			</section>
+
+			<section id="idk9">
+				<div class="headbar2">creating app</div>
+			
+				Once you have installed all the necessary packages, now it's time to install the app. Execute the commands one by one:
+				
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp9"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp9">
+					rails new firstapp -d sqlite3<br>
+					cd firstapp<br>
+					rails server
+				</div>
+				<img class="rounded mx-auto d-none d-md-block" src="../7_rails_in_debian/assets/10_app_1.png" alt="app" width="700">
+				<img class="rounded mx-auto d-none d-md-block" src="../7_rails_in_debian/assets/11_app_2.png" alt="sqlite gem" width="700">
+			</section>
+
+			<section id="idk10">
+				<div class="headbar2">testing the app</div>
+			
+				Finally now its the time to check if everything went fine or not. Run the below command in the
+				<span class="text-info font-italic">firstapp</span> directory.
+	
+				<div class="hmm1">
+					<div class="row">
+						<div class="col-6">bash</div>
+						<div class="col-6 text-right">
+							<a class="text-warning cp" title="copy to clipboard" data-clipboard-target="#cp10"><i class="fa fa-copy"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="hmm" id="cp10">
+					rails server
+				</div>
+				<img class="rounded mx-auto d-none d-md-block" src="../7_rails_in_debian/assets/12_success.png" alt="" width="700">
+
+				Now navigate to the given link and see if everything went well. If successful, you will see the welcome
+				screen in the browser.
+
+				<img class="rounded mx-auto my-4 d-none d-md-block" src="../7_rails_in_debian/assets/13_web.png" alt="" width="700">
+
+				That's all for now. Enjoy the rails server as you like :)
+			</section>
+		</div>
+		<footer class="text-center text-light py-5">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h2>Kosai Limited</h2>
+						<p>Copyright &copy; 2021</p>
+						<span>Designed By: 
+							<a href="../members_details/rootminusone/index.html" class="ml-2 text-warning">Rootminusone</a>
+						</span>
+						<div class="my-2">Contact us:</div>
+						<a href="https://www.facebook.com/koshaiLimited/" target="_blank" class="text-light">
+							<i class="fa fa-facebook-official fa-2x"></i></a>
+						<a href="https://www.youtube.com/channel/UCqOOTuqW_zw5x6ZUuMul3wQ" target="_blank" class="text-light ml-2">
+							<i class="fa fa-youtube-play fa-2x"></i></a>
+						<a href="../page_not_found/index.html" class="text-light ml-2"><i class="fa fa-whatsapp fa-2x"></i></a>
+						<a href="../page_not_found/index.html" class="text-light ml-2"><i class="fa fa-twitter fa-2x"></i></a>
+					</div>
+				</div>
+			</div>
+		</footer>
+		
+		<script src="../common/js/jquery.js"></script>
+		<script src="../common/js/popper.min.js"></script>
+		<script src="../common/js/bootstrap.min.js"></script>
+		<script src="../common/js/navbar-fixed.js"></script>
+		<script src="../common/js/clipboard.min.js"></script>
+		<script src="../common/js/common.js"></script>
+	</body>
+</html>
